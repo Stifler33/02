@@ -21,15 +21,15 @@ void MainWindow::openFile()
     {
         ui->textEdit->clear();
          QFile file(pathFile);
-         if(!file.open(QIODevice::ReadWrite | QIODevice::Text))
+         if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
          {
              printText("file not open");
              return;
          }
 
-             while(file.atEnd())
+             while(!file.atEnd())
              {
-                 QByteArray t = file.readLine();
+                 QString t = file.readLine();
                  printText(t);
              }
 
